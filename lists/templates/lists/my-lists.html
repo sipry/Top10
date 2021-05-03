@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}My Lists{% endblock %}
+
+{% block content %}
+    <h1>My Lists</h1>
+    {% if lists %}
+        {% for list in lists %}
+             <h2>
+                 <a>
+                    List goes here!
+                 </a>
+             </h2>
+        {% endfor %}
+    {% else %}
+        Please create a list
+        <a class="btn btn-primary" href="#" role="button">Link</a>
+    {% endif %}
+{% endblock %}
