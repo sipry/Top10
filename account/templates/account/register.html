@@ -3,11 +3,24 @@
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
-    <form method="post">
+<body id="login-body">
+<div class="jumbotron jumbotron-fluid">
+        <div class="container ">
+            <h2 class="display-4 text-center"">Create an account</h2>
+            <p class="lead text-center">Please, sign up using the following form:</p>
+        </div>
+   </div>
+<div class="login-form">
+        <div id="myForm" class="form justify-content-center">
+          <form method="post" class="form-container">
+
         {{ user_form }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
-    </form>
+
+        <p><input id="singup-btn"type="submit" value="Sign up"></p>
+          </form>
+        </div>
+    </div>
+
+</body>
 {% endblock %}

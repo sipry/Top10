@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}My Lists{% endblock %}
+{% block title %}Create Your List{% endblock %}
 
 {% block content %}
-    <h1>Create List</h1>
     <form name="create_list" method="post">
         {% csrf_token %}
         <select name="themes_selector" id="themes_selector" class="form-select" aria-label="Default select example">

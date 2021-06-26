@@ -15,7 +15,7 @@ window.onload = function(e){
             $.each($('#dropzone').find('div.row'), (i, ele) => {
                 item_list.push(parseInt(ele.id, 10))
            })
-            document.getElementById('item_list').value = "[" + item_list.toString() + "]";
+            document.getElementById('item_list').value = item_list.toString();
 
             submit_form()
 
@@ -64,5 +64,6 @@ window.onload = function(e){
         $( this ).removeClass( "active" );
       }
     });
+
 }
 

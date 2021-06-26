@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Today's Top 10{% endblock %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <p>Welcome to your dashboard.</p>
+    <form name="create_list" method="post">
+        {% csrf_token %}
+        <select name="themes_selector" id="themes_selector" class="form-select" aria-label="Default select example">
+            {% if theme is None %}
+              <option selected >Open this select menu</option>
+            {% endif %}
+             {% for t in themes %}
+                {% if theme == t.name %}
+                  <option selected value="{{ t.name }}">{{ t.name }}</option>
+                {% else %}
+                   <option value="{{ t.name }}">{{ t.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
 {% endblock %}

@@ -3,17 +3,52 @@
 {% block title %}My Lists{% endblock %}
 
 {% block content %}
-    <h1>My Lists</h1>
-    {% if lists %}
-        {% for list in lists %}
-             <h2>
-                 <a>
-                    List goes here!
-                 </a>
-             </h2>
-        {% endfor %}
-    {% else %}
-        Please create a list
-        <a class="btn btn-primary" href="#" role="button">Link</a>
-    {% endif %}
+<form name="create_list" method="post">
+        {% csrf_token %}
+        <select name="themes_selector" id="themes_selector" class="form-select" aria-label="Default select example">
+            {% if theme is None %}
+              <option selected >Open this select menu</option>
+            {% endif %}
+             {% for t in themes %}
+                {% if theme == t.id %}
+                  <option selected value="{{ t.id }}">{{ t.name }}</option>
+                {% else %}
+                   <option value="{{ t.id }}">{{ t.name }}</option>
+
+                {% endif %}
+            {% endfor %}
+        </select>
+</form>
+        {% if theme %}
+            <div style="padding: 30px;" class="container cards-create-list">
+                <div class="row">
+                    <div class="col">
+                            {% if list %}
+                                {% for item in list.item.all %}
+                                <div class="card"  style="max-width: 540px;">
+                                    <div class="row g-0" id="{{item.id}}">
+                                        <div class="col-md-4">
+                                            <img style="width:100%; height:100%" src="{{item.image}}" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{item.name}}</h5>
+                                                <p class="card-text"> {{item.description|truncatewords:20|linebreaks}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <h2>Theres no new list. Lets create a <a href="/lists/create-list"> new list!</a></h2>
+                            {% endif %}
+
+                        </div>
+                </div>
+            </div>
+                            <div class="col">
+                                <i id="edit-boton" class="fas fa-pen"></i>
+                            </div>
+{% endif %}
 {% endblock %}
+

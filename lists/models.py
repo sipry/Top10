@@ -25,7 +25,7 @@ class Item(models.Model):
 
 
 class List(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     item = models.ManyToManyField(Item)
